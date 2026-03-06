@@ -1,6 +1,6 @@
 ---
 version: v1alpha
-name: "portfolio-intelligence"
+name: "customer-360"
 layer: user
 type: lens
 tags:
