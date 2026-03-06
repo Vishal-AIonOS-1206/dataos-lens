@@ -1,0 +1,56 @@
+---
+version: v1alpha
+name: "portfolio-intelligence"
+layer: user
+type: lens
+tags:
+  - Tier.Gold
+description: Deployment of risk management Lens2 for fraud detection, risk assessment, and compliance monitoring capabilities.
+lens:
+  compute: runnable-default
+  source:
+    type: minerva
+    name: minervac
+    catalog: snowflake
+  repo:
+    url: https://github.com/Vishal-AIonOS-1206/dataos-lens
+    lensBaseDir: dataos-lens/semantic-model/model
+    syncFlags:  
+      - --ref=main
+  api:   # optional
+    replicas: 1 # optional
+    logLevel: info  # optional
+    envs:
+      LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+    resources: # optional
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 1000m
+        memory: 2024Mi
+  worker: # optional
+    replicas: 1 # optional
+    logLevel: info  # optional
+    envs:
+      LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 400m
+        memory: 512Mi
+  router: # optional
+    logLevel: info  # optional
+    envs:
+      LENS2_SCHEDULED_REFRESH_TIMEZONES: "UTC,America/Vancouver,America/Toronto"
+    resources: # optional
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 400m
+        memory: 512Mi
+ 
+     

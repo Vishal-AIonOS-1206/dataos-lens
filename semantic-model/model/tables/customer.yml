@@ -1,0 +1,56 @@
+tables:
+  - name: customer
+    sql: {{ load_sql('customer') }}
+    description: Table containing profile and verification information for each customer.
+    joins:
+      - name: transaction
+        relationship: one_to_many
+        sql: "{TABLE.customer_id} = {transaction.customer_id}" 
+        
+    dimensions:
+      - name: customer_id
+        type: string
+        description: Unique identifier assigned to each customer.
+        sql: customer_id
+        primary_key: true
+        public: true
+
+      - name: name
+        type: string
+        description: Full name of the customer.
+        sql: name
+
+      - name: phone
+        type: string
+        description: Registered phone number of the customer.
+        sql: phone
+
+      - name: email
+        type: string
+        description: Email address associated with the customer account.
+        sql: email
+
+      - name: tier
+        type: string
+        description: Customer tier level indicating account privileges or service category.
+        sql: tier
+
+      - name: account_status
+        type: string
+        description: Current status of the customer account (e.g., active, suspended, closed).
+        sql: account_status
+
+      - name: kyc_date
+        type: string
+        description: Date when the customer's KYC (Know Your Customer) verification was completed.
+        sql: kyc_date
+
+      - name: ndpr_consent
+        type: string
+        description: Indicates whether the customer has provided consent under NDPR (Nigeria Data Protection Regulation).
+        sql: ndpr_consent
+      
+      - name: address
+        type: string
+        description: Residential or registered address of the customer.
+        sql: address

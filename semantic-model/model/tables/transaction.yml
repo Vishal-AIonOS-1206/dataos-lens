@@ -1,0 +1,37 @@
+tables:
+  - name: transaction
+    sql: {{ load_sql('transaction') }}
+    description: Table containing information about customer transactions.
+
+    dimensions:
+      - name: transaction_id
+        type: string
+        description: Unique identifier for each transaction.
+        sql: transaction_id
+        primary_key: true
+        public: true
+
+      - name: account_id
+        type: string
+        description: Unique identifier for the account associated with the transaction.
+        sql: account_id
+
+      - name: customer_id
+        type: string
+        description: Unique identifier for the customer.
+        sql: customer_id
+
+      - name: amount
+        type: number
+        description: Transaction amount.
+        sql: amount
+
+      - name: merchant
+        type: string
+        description: Merchant where the transaction occurred.
+        sql: merchant
+
+      - name: merchant_category
+        type: string
+        description: Category of the merchant.
+        sql: merchant_category
